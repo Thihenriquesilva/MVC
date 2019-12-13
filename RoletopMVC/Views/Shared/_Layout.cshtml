@@ -1,0 +1,97 @@
+﻿@model RoletopMVC.ViewModels.BaseViewModel
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Links folhas de estilo-->
+    <link href="~/css/style.css" rel="stylesheet" type="text/css">
+    <link href="~/css/style-nav.css" rel="stylesheet" type="text/css">
+    <!-- <link href="~/css/style-galery.css" rel="stylesheet" type="text/css"> -->
+    
+
+    @if(!"Home".Equals(@Model.NomedaView))
+    {
+        <link href="~/css/forms.css" rel="stylesheet" type="text/css">
+        <link href="~/css/style.css" rel="stylesheet" type="text/css">
+    }
+    @if("Galeria".Equals(@Model.NomedaView)){
+        <link href="~/css/style.css" rel="stylesheet" type="text/css">
+        <link href="~/css/style-galery.css" rel="stylesheet" type="text/css">
+    }
+    @if("Historico".Equals(@Model.NomedaView)){
+        <link href="~/css/style-dashboard.css" rel="stylesheet" type="text/css">
+        
+    }
+    @if("Dashboard".Equals(@Model.NomedaView)){
+        <link href="~/css/style-dashboard.css" rel="stylesheet" type="text/css">
+    }
+    
+    <!--Principal-->
+
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <!--Font Awesome -->
+    <script src="https://kit.fontawesome.com/349a64cb04.js"></script>
+    <!-- SCRIPT MENU NAV-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script> type="text/javascript">
+        $(document).ready(function()
+        {
+            $('.toggle span').click(function()
+            {
+                $('ul').toggleClass('active')
+            })
+        })
+    </script>
+
+
+    <title>RoleTop</title>
+</head>
+<body class="menu-forms">
+    <header>
+        <div>
+            <nav>
+                <div class="toggle">
+                    <span>MENU</span>
+                </div>
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index" >Início</a></li>
+                    <li><a href='@Url.Action("Index","Home")#sobre'>Sobre</a></li>
+                    <li><a asp-controller="Galeria" asp-action="Index">Galeria</a></li>
+                    @if(string.IsNullOrEmpty(@Model.EmailUser)){
+                        <li><a asp-controller="Cliente" asp-action="Login">Login/Cadastro</a></li>
+                    }else{
+                        <li><a asp-controller="Cliente" asp-action="Logoff">Logoff</a></li>
+                        <li><a asp-controller="Cliente" asp-action="Historico">Histórico</a></li>
+                        <li><a asp-controller="Pedido" asp-action="Index" >Fazer Evento</a></li>
+                    }
+                </ul>
+                <div style="clear:both"> </div>
+            </nav>
+        
+            <!-- Logo da Empresa -->
+            @if("Home".Equals(@Model.NomedaView)){
+
+                Html.RenderPartial("_HeaderHomePage");
+            }
+            
+        </div>
+    </header>
+@RenderBody()
+    <footer>
+        <!--Rodapé-->
+        Telefone para contrato
+        Celular
+        E-mail
+        Redes socias
+    </footer>
+
+
+</body>
+
+</html>     

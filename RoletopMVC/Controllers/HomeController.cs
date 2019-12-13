@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using RoletopMVC.Models;
+using RoletopMVC.ViewModels;
+
+namespace RoletopMVC.Controllers
+{
+    public class HomeController : AbstractController
+    {
+        public IActionResult Index()
+        {
+            return View(new BaseViewModel(){
+                NomedaView = "Home",
+                EmailUser = UsuarioEmailSession(),
+                UserName = UsuarioNomeSession()
+            });
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+    }
+}

@@ -1,0 +1,39 @@
+
+<main>
+    <section class="formulario">
+        <h2> Cadastro</h2>
+        <form method="POST" action='@Url.Action("CadastrarCliente","Cadastro")'>
+            <div>
+                <label for="nome">Nome completo</label>
+                <input id="nome" type="text" maxlength="20" minlength="3" name="nome" />
+            </div>
+            <div>
+                <label for="data-nascimento">Date de nascimento</label>
+                <input id="data-nascimento" type="date" maxlength="20" minlength="3" name="data-nascimento" />
+            </div>
+            <div>
+                <label for="telefone">Telefone</label>
+                <input id="telefone" type="telefone" placeholder="(11)9845-5623s" maxlength="20" minlength="3" name="telefone">
+            </div>
+            <div>
+                <label for="cpf">CPF</label>
+                <input id="cpf" type="text" maxlength="20" minlength="3"name="cpf" />
+            </div>
+            <div>
+                <label for="email">*E-mail</label>
+                <input id="email" type="email" placeholder="examplo@email.com" maxlength="30" minlength="3" name="email" required/>
+            </div>
+            <div>
+                <label for="senha">*Senha</label>
+                <input id="senha" type="password" maxlength="20" minlength="6"  name="senha"/>
+            </div>
+            <div>
+                <label for="confirmar-senha">Confirmar Senha</label>
+                <input id="confirmar-senha" type="password" maxlength="20" minlength="6" name="confirmar-senha" required>
+            </div>
+            <div class="enter">
+                <input type="submit" value="Entrar!" />
+            </div>
+        </form>
+    </section>
+</main>

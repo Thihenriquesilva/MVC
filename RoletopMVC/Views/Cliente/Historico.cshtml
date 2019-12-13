@@ -1,0 +1,35 @@
+@model RoletopMVC.ViewModels.HistoricoViewModel
+@{
+    ViewData["Title"] = "Eventos marcados";
+    ViewData["H2"] = "Históricos de Eventos";
+}
+<main>
+<h2 style="text-align: center; font-size:18px;">@ViewData["H2"]</h2>
+    <div style="color:#ffffff;">    
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Eventos</th>
+                    <th>Serviços</th>
+                    <th>Nº participantes</th>
+                    <th>Data do evento</th>
+                    <th>Nº Forma do evento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>Seu pedido</td>
+                @foreach (var pedido in Model.PedidoEventos){
+                    <tr>
+                        <td>@pedido.DataDoEvento</td>
+                        <td>@pedido.Evento.Nome</td>
+                        <td>@pedido.Servicos.Nome</td>
+                        <td>@pedido.NumeroParticipantes</td>
+                        <td>@pedido.AgendamentoEvento</td>
+                        <td>@pedido.FormadoEvento</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
