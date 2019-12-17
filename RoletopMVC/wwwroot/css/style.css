@@ -45,11 +45,11 @@ nav a:hover {
 main{
     /* background-image: linear-gradient(rgba(43, 0, 51, 0.8) 50%, rgba(141, 2, 165, 0.671)); */
     /* background-color: rgba(235, 194, 47, 0.88); */
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     margin-top: -6px; 
     box-shadow: 0px 0px 10px black;
     padding: 10px;
-    height: 86%;
+    /* height: 86%; */
     text-align: center;
     color:#000000;
 }
@@ -152,6 +152,27 @@ h2{
 }
 
 
+.tp-servicos-2{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tp-servicos-2 p{
+    padding:  7px 18px;
+    width: 290px;
+    margin: 5px;
+    background-color: #61156ec9;
+    border: 1px solid  #823b57;
+    font-size: 20px;
+    color: #fff;
+    font-family: 'Muli', sans-serif;
+    text-transform: uppercase;
+    
+}
+
+
 
 /*************************************************************************************************/
 
@@ -181,6 +202,22 @@ h2{
     text-align: justify;
     font-family: 'Chilanka', cursive;
 }
+
+#img-galpao {
+   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+   
+ }
+ 
+ #img-galpao > img {
+     padding: 5px;
+     margin: 4px;
+     max-width: 100%;
+    height: auto;
+ }
 
 .fim{
     display: block;
