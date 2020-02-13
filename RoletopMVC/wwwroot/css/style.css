@@ -45,7 +45,7 @@ nav a:hover {
 main{
     /* background-image: linear-gradient(rgba(43, 0, 51, 0.8) 50%, rgba(141, 2, 165, 0.671)); */
     /* background-color: rgba(235, 194, 47, 0.88); */
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.82);
     margin-top: -6px; 
     box-shadow: 0px 0px 10px black;
     padding: 10px;
@@ -57,6 +57,12 @@ main{
 h5{
     font-family: 'Muli', sans-serif;
     font-size: 20pt;
+}
+
+h6{
+    color: rgb(255, 198, 0);
+    font-size: 20pt;
+    font-family: 'Muli', sans-serif;
 }
 
 h2{
@@ -72,6 +78,7 @@ h2{
     justify-content: space-evenly;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 15px;
     color:black;
     font-family: 'Muli', sans-serif;
 }
@@ -191,7 +198,7 @@ h2{
 #sobre {
     display: block;
     background-color: rgba(0, 0, 0, 80%);
-    padding: 200px;
+    padding: 60px;
     margin: 10px auto 10px auto;
     border-radius: 10px;
 }
@@ -201,6 +208,7 @@ h2{
     color: rgb(255, 198, 0);
     text-align: justify;
     font-family: 'Chilanka', cursive;
+    margin-top: 30px;
 }
 
 #img-galpao {
@@ -221,11 +229,12 @@ h2{
 
 .fim{
     display: block;
-    background-color: #4d4343da;
+    background-color: #6f103ef2;
     margin: 10px auto 10px auto;
     border-radius: 10px;
     height: auto;
     border-radius: 10px;
+    margin: auto;
 }
 .fim{
     
@@ -235,7 +244,20 @@ h2{
 }
 .fim p{
     padding: 50px;
-    font-size: 16px;
+    font-size: 30px;
+}
+
+#fim-dep {
+    margin: auto;
+    margin-bottom: 50px;
+    border: solid 2px #800080;
+    display: inline-block;
+    padding: 50px;
+}
+#fim-dep p{
+    padding: 5px;
+    font-size: 15px;
+    margin: 10px;
 }
 
 
@@ -249,6 +271,20 @@ footer{
     padding: 15px;
     background-color: #f56146;
     color: aquamarine;
+}
+
+
+
+@media (max-width: 650px){
+    #sobre p {
+        font-size: 14pt;
+    }
+}
+
+@media (max-width:480px){
+    #sobre p {
+        font-size: 12px;
+    }
 }
 
 
