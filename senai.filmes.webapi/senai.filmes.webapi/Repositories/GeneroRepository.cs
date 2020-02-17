@@ -48,5 +48,28 @@ namespace senai.filmes.webapi.Repositories
 
             return generos;
         }
+
+
+        public List<GeneroDomain> Adicionar()
+        {
+            List<GeneroDomain> addgeneros = new List<GeneroDomain>();
+
+            using (SqlConnection con= new SqlConnection(StringConexao))
+            {
+                string insert = "INSERT INTO Genero(Genero)"+"VALUES ('"+addgeneros.Genero +"')";
+
+                con.Open();
+
+                SqlDataReader cdr;
+
+                using (SqlCommand cmd = new SqlCommand(insert, con))
+                {
+                    cdr = cmd.ExecuteReader();
+                    
+                }
+
+
+            }
+        }
     }
 }

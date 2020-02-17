@@ -13,5 +13,6 @@ namespace senai.filmes.webapi.Interfaces
         /// </summary>
         /// <returns>Retorna uma lista de gêneros</returns>
         List<GeneroDomain> Listar();
+        List<GeneroDomain> Adicionar();
     }
 }
