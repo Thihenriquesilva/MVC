@@ -11,9 +11,9 @@ namespace senai.filmes.webapi.Repositories
     public class GeneroRepository : IGeneroRepository
     {   //Adiciona o Banco de Dados e define qual Banco usar
         //integrated security= true : usar em casa
-        //private string StringConexao = "Data Source=DEV1201\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=sa@132";
+        private string StringConexao = "Data Source=DEV1201\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=sa@132";
 
-        private string StringConexao = "Data Source=LAPTOP-OMA8SO3J\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=thi@132";
+        //private string StringConexao = "Data Source=LAPTOP-OMA8SO3J\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=thi@132";
         public List<GeneroDomain> Listar()
         {
             List<GeneroDomain> generos = new List<GeneroDomain>();
@@ -51,40 +51,51 @@ namespace senai.filmes.webapi.Repositories
         }
 
 
-        public List<GeneroDomain> Adicionar()
+        public void Add(GeneroDomain ge)
         {
-            
-            List<GeneroDomain> addgeneros = new List<GeneroDomain>();
+            //GeneroDomain g = new GeneroDomain();
+
+            //List<GeneroDomain> addgeneros = new List<GeneroDomain>();
 
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string insert = "INSERT INTO Genero VALUES (@Nome)";
+                string insert = "INSERT INTO Genero(Genero) VALUES(@Genero)";
 
-                
 
-                SqlCommand cmd = new SqlCommand(insert, con);
-                con.Open();
-
-                int a = cmd.ExecuteNonQuery();
-
-                if (a > 0)
+                try
                 {
-                    GeneroDomain g = new GeneroDomain();
-                    addgeneros.Add(g);
+                    SqlCommand cmd = new SqlCommand(insert, con);
+                    cmd.Parameters.AddWithValue("@Genero", ge.Nome);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine("Não foi possivel adicionar");
+                    Console.WriteLine("============================");
+                    Console.WriteLine("O erro é : " + e);
+                    Console.WriteLine("============================");
                 }
-
-                
-
-                return addgeneros;
 
 
             }
         }
 
+        public void Deletar(int Id)
+        {
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string delete = "DELETE FROM Generos WHERE IdGenero = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(delete, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id",Id);
+                    cmd.ExecuteNonQuery();
+                    con.Open();
+                }
+
+            }
+        }
 
     }
 }

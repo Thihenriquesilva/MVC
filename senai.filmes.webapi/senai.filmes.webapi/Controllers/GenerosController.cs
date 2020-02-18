@@ -31,9 +31,27 @@ namespace senai.filmes.webapi.Controllers
 
 
         [HttpPost]
-        public IEnumerable<GeneroDomain> Post()
+
+        //Método do professor
+        public IActionResult Post(GeneroDomain ge)
         {
-            return _generoRepository.Adicionar();
+            _generoRepository.Add(ge);
+
+            return Ok();
+        }
+
+        //MEu método
+        //public void Add(GeneroDomain ge)
+        //{
+        //   _generoRepository.Add(ge);
+        //}
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int Id)
+        {
+            _generoRepository.Deletar(Id);
+
+            return NoContent();
         }
     }
 }
