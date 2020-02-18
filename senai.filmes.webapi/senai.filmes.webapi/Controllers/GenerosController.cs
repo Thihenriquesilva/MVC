@@ -28,5 +28,12 @@ namespace senai.filmes.webapi.Controllers
         {
             return _generoRepository.Listar();
         }
+
+
+        [HttpPost]
+        public IEnumerable<GeneroDomain> Post()
+        {
+            return _generoRepository.Adicionar();
+        }
     }
 }

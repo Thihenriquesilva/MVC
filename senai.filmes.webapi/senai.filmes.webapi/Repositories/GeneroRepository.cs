@@ -11,8 +11,9 @@ namespace senai.filmes.webapi.Repositories
     public class GeneroRepository : IGeneroRepository
     {   //Adiciona o Banco de Dados e define qual Banco usar
         //integrated security= true : usar em casa
-        private string StringConexao = "Data Source=DEV1201\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=sa@132";
+        //private string StringConexao = "Data Source=DEV1201\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=sa@132";
 
+        private string StringConexao = "Data Source=LAPTOP-OMA8SO3J\\SQLEXPRESS; initial catalog=Filmes; user Id=sa; pwd=thi@132";
         public List<GeneroDomain> Listar()
         {
             List<GeneroDomain> generos = new List<GeneroDomain>();
@@ -52,24 +53,38 @@ namespace senai.filmes.webapi.Repositories
 
         public List<GeneroDomain> Adicionar()
         {
+            
             List<GeneroDomain> addgeneros = new List<GeneroDomain>();
 
-            using (SqlConnection con= new SqlConnection(StringConexao))
+            using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string insert = "INSERT INTO Genero(Genero)"+"VALUES ('"+addgeneros.Genero +"')";
+                string insert = "INSERT INTO Genero VALUES (@Nome)";
 
+                
+
+                SqlCommand cmd = new SqlCommand(insert, con);
                 con.Open();
 
-                SqlDataReader cdr;
+                int a = cmd.ExecuteNonQuery();
 
-                using (SqlCommand cmd = new SqlCommand(insert, con))
+                if (a > 0)
                 {
-                    cdr = cmd.ExecuteReader();
-                    
+                    GeneroDomain g = new GeneroDomain();
+                    addgeneros.Add(g);
                 }
+                else
+                {
+                    Console.WriteLine("Não foi possivel adicionar");
+                }
+
+                
+
+                return addgeneros;
 
 
             }
         }
+
+
     }
 }
