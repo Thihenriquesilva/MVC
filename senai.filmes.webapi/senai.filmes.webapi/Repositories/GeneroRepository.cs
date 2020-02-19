@@ -50,6 +50,36 @@ namespace senai.filmes.webapi.Repositories
             return generos;
         }
 
+        public GeneroDomain BuscarPorId(int id)
+        {
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string selectById = "SELECT IdGenero, Genero FROM Genero WHERE IdGenero= @ID";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(selectById, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    rdr = cmd.ExecuteReader();
+
+                    if (rdr.Read())
+                    {
+                        GeneroDomain genero = new GeneroDomain
+                        {
+                            IdGenero = Convert.ToInt32(rdr["IdGenero"]),
+                            Nome = rdr["Genero"].ToString()
+                        };
+                        return genero;
+                    }
+                    return null;
+                }  
+            }
+        }
+
 
         public void Add(GeneroDomain ge)
         {
@@ -81,17 +111,65 @@ namespace senai.filmes.webapi.Repositories
             }
         }
 
+        public void AtualizarIdCorpo(GeneroDomain genero)
+        {
+            // Declara a conexão passando a string de conexão
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                // Declara a query que será executada
+                string queryUpdate = "UPDATE Genero SET Genero = @Nome WHERE IdGenero = @ID";
+
+                // Declara o SqlCommand passando o comando a ser executado e a conexão
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    // Passa os valores dos parâmetros
+                    cmd.Parameters.AddWithValue("@ID", genero.IdGenero);
+                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
+
+                    // Abre a conexão com o banco de dados
+                    con.Open();
+
+                    // Executa o comando
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AtualizarIdUrl(int id, GeneroDomain genero)
+        {
+            // Declara a conexão passando a string de conexão
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                // Declara a query que será executada
+                string queryUpdate = "UPDATE Genero SET Genero = @Nome WHERE IdGenero = @ID";
+
+                // Declara o SqlCommand passando o comando a ser executado e a conexão
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+                    // Passa os valores dos parâmetros
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@Nome", genero.Nome);
+
+                    // Abre a conexão com o banco de dados
+                    con.Open();
+
+                    // Executa o comando
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void Deletar(int Id)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string delete = "DELETE FROM Generos WHERE IdGenero = @Id";
+                string delete = "DELETE FROM Genero WHERE IdGenero = @Id";
 
                 using (SqlCommand cmd = new SqlCommand(delete, con))
                 {
                     cmd.Parameters.AddWithValue("@Id",Id);
-                    cmd.ExecuteNonQuery();
                     con.Open();
+                    cmd.ExecuteNonQuery();
                 }
 
             }

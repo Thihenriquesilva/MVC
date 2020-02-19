@@ -15,6 +15,12 @@ namespace senai.filmes.webapi.Interfaces
         List<GeneroDomain> Listar();
         void Add(GeneroDomain ge);
 
+        GeneroDomain BuscarPorId(int id);
+
         void Deletar(int Id);
+
+        void AtualizarIdCorpo(GeneroDomain genero);
+
+        void AtualizarIdUrl(int id, GeneroDomain genero);
     }
 }
