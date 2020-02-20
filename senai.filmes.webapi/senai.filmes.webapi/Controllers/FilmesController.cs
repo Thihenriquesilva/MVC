@@ -28,17 +28,28 @@ namespace senai.filmes.webapi.Controllers
         }
 
         // GET: api/Filmes/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult GetByIDFilme(int id)
         {
-            return "value";
+            FilmeDomain filmeBuscado = _filmeRepository.BuscarFilmePorId(id);
+
+            if(filmeBuscado == null)
+            {
+                return NotFound("Não encontrado");
+            }
+
+            return Ok(filmeBuscado);
         }
 
         // POST: api/Filmes
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post (FilmeDomain fil)
         {
+            _filmeRepository.Add(fil);
+
+            return Ok();
         }
+        
 
         // PUT: api/Filmes/5
         [HttpPut("{id}")]

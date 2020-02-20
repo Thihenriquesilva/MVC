@@ -9,5 +9,9 @@ namespace senai.filmes.webapi.Interfaces
     interface IFilmeRepository
     {
         List<FilmeDomain> ListarFilmes();
+
+        FilmeDomain BuscarFilmePorId(int id);
+
+        void Add(FilmeDomain fil);
     }
 }

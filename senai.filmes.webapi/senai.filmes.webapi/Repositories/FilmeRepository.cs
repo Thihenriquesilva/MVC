@@ -40,9 +40,9 @@ namespace senai.filmes.webapi.Repositories
                             IdFilme = Convert.ToInt32(rdr[0]),
                             Titulo = rdr["Titulo"].ToString(),
                             IdGenero = Convert.ToInt32(rdr[2]),
-                            Genero = rdr["Titulo"].Equals();
-
-                            
+                            Genero = new GeneroDomain {
+                                Nome = rdr["Genero"].ToString()
+                            }                                                                                
                             
                         };
 
@@ -54,5 +54,62 @@ namespace senai.filmes.webapi.Repositories
             return filmes;
         }
 
+        public FilmeDomain BuscarFilmePorId(int id)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string selectById = "SELECT IdFilme, Titulo, Genero.IdGenero FROM Filmes INNER JOIN Genero ON Genero.IdGenero = Filmes.IdGenero WHERE IdFilme =@ID";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using(SqlCommand cmd = new SqlCommand(selectById, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    rdr = cmd.ExecuteReader();
+
+                    if (rdr.Read())
+                    {
+                        FilmeDomain filme = new FilmeDomain
+                        {
+                            IdFilme = Convert.ToInt32(rdr["IdFilme"]),
+                            Titulo = rdr["Titulo"].ToString(),
+                            IdGenero = Convert.ToInt32(rdr["IdGenero"]),
+                            
+
+                        };
+
+                        return filme;
+                    }
+                    return null;
+
+                }
+            }
+        }
+
+
+        public void Add (FilmeDomain fil)
+        {
+                using(SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string insert = "INSERT INTO Filmes(Titulo, IdGenero) VALUES(@Titulo, @IdGenero)";
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(insert, con);
+                    cmd.Parameters.AddWithValue("@Titulo", fil.Titulo);
+                    cmd.Parameters.AddWithValue("@IdGenero", fil.IdGenero);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("===========================");
+                    Console.WriteLine("O erro é: " + e);
+                    Console.WriteLine("===========================");
+                }
+            }
+        }
     }
 }
