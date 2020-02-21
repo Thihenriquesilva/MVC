@@ -9,5 +9,7 @@ namespace senai.peoples.webapi.Interfaces
     interface IFuncionarioRepository
     {
         List<FuncionariosDomain> Listar();
+
+        void AdicionarFuncionario(FuncionariosDomain fu);
     }
 }

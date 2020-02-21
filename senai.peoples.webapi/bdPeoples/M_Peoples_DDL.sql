@@ -10,4 +10,4 @@ CREATE TABLE TBL_Funcionario(
 	Sobrenome VARCHAR(200) NOT NULL
 );
 
-
+SELECT*FROM TBL_Funcionario;
